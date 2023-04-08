@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Contatos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item class="novoctt">
+    <ion-icon name="person-add-outline" color="primary"></ion-icon>
+    Criar Novo Contato
+  </ion-item>
+  <ion-searchbar placeholder="Pesquisar" show-clear-button="focus" (ionInput)="handleChange($event)" class="search"></ion-searchbar>
+  <ion-list >
+    <ion-item *ngFor="let contact of results" (click)="showInfoModal(contact)">
+      <ion-thumbnail slot="start">
+        <img src="{{ contact.image }}" alt="">
+      </ion-thumbnail>
+      <ion-label>
+        {{ contact.name }}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-card *ngIf="contacts.length === 0">
+    <ion-card-content>
+      <ion-label>Você ainda não tem nenhum contato.</ion-label>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab  slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button size="small">
+      <ion-icon name="apps-outline" size="small"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
